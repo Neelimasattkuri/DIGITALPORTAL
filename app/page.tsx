@@ -8,16 +8,19 @@ import AdminDashboard from '@/components/AdminDashboard';
 export default function Home() {
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [userType, setUserType] = useState<'user' | 'admin' | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false); // <— prevents hydration mismatch
 
   useEffect(() => {
-    // Check for stored session
-    const storedUser = localStorage.getItem('currentUser');
-    const storedUserType = localStorage.getItem('userType');
-    
+    // Access localStorage only in browser
+    const storedUser = typeof window !== 'undefined' ? localStorage.getItem('currentUser') : null;
+    const storedUserType = typeof window !== 'undefined' ? localStorage.getItem('userType') : null;
+
     if (storedUser && storedUserType) {
       setCurrentUser(JSON.parse(storedUser));
       setUserType(storedUserType as 'user' | 'admin');
     }
+
+    setIsLoaded(true); // <— tell Next.js hydration completed
   }, []);
 
   const handleLogout = () => {
@@ -27,13 +30,20 @@ export default function Home() {
     localStorage.removeItem('userType');
   };
 
+  // 🚀 Avoid hydration error — wait until useEffect has run
+  if (!isLoaded) return null;
+
   if (!currentUser) {
-    return <LoginPage onLoginSuccess={(user, type) => {
-      setCurrentUser(user);
-      setUserType(type);
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      localStorage.setItem('userType', type);
-    }} />;
+    return (
+      <LoginPage
+        onLoginSuccess={(user, type) => {
+          setCurrentUser(user);
+          setUserType(type);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('userType', type);
+        }}
+      />
+    );
   }
 
   return (
