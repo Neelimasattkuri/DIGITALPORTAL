@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AlertCircle, Loader2 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 
 export default function LoginPage({ onLoginSuccess }: { onLoginSuccess: (user: any, type: string) => void }) {
   const [activeTab, setActiveTab] = useState<'user' | 'admin'>('user');
@@ -53,7 +53,7 @@ export default function LoginPage({ onLoginSuccess }: { onLoginSuccess: (user: a
       onLoginSuccess(data.user, 'user');
     } catch (err) {
       console.error("[v0] Login error:", err);
-      setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+      setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
     } finally {
       setLoading(false);
     }
@@ -85,7 +85,7 @@ export default function LoginPage({ onLoginSuccess }: { onLoginSuccess: (user: a
       onLoginSuccess(data.admin, 'admin');
     } catch (err) {
       console.error("[v0] Admin login error:", err);
-      setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+      setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
     } finally {
       setLoading(false);
     }
@@ -132,7 +132,7 @@ export default function LoginPage({ onLoginSuccess }: { onLoginSuccess: (user: a
       setUserAdhaar(registerData.adhaar);
     } catch (err) {
       console.error("[v0] Registration error:", err);
-      setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+      setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
     } finally {
       setLoading(false);
     }

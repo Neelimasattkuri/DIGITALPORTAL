@@ -10,7 +10,7 @@ import { LogOut, Briefcase, Users, CheckCircle, XCircle, Plus, Trash2, Loader } 
 import JobPostingForm from './JobPostingForm';
 import AdminManagementForm from './AdminManagementForm';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 
 export default function AdminDashboard({ user, onLogout }: { user: any; onLogout: () => void }) {
   const [jobs, setJobs] = useState<any[]>([]);
@@ -43,7 +43,7 @@ export default function AdminDashboard({ user, onLogout }: { user: any; onLogout
         setError(null);
       } catch (err) {
         console.error("[v0] Error fetching admin data:", err);
-        setError('Failed to load data. Make sure Flask server is running on http://localhost:5000');
+        setError('Failed to load data. Make sure Flask server is running on ${API_BASE}');
       } finally {
         setLoading(false);
       }

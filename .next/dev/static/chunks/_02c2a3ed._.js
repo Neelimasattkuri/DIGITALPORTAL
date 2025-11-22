@@ -413,7 +413,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 function LoginPage({ onLoginSuccess }) {
     _s();
     const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('user');
@@ -457,7 +457,7 @@ function LoginPage({ onLoginSuccess }) {
             onLoginSuccess(data.user, 'user');
         } catch (err) {
             console.error("[v0] Login error:", err);
-            setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+            setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
         } finally{
             setLoading(false);
         }
@@ -489,7 +489,7 @@ function LoginPage({ onLoginSuccess }) {
             onLoginSuccess(data.admin, 'admin');
         } catch (err) {
             console.error("[v0] Admin login error:", err);
-            setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+            setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
         } finally{
             setLoading(false);
         }
@@ -539,7 +539,7 @@ function LoginPage({ onLoginSuccess }) {
             setUserAdhaar(registerData.adhaar);
         } catch (err) {
             console.error("[v0] Registration error:", err);
-            setError('Connection failed. Make sure Flask server is running on http://localhost:5000');
+            setError('Connection failed. Make sure Flask server is running on ${API_BASE}');
         } finally{
             setLoading(false);
         }
@@ -2057,7 +2057,7 @@ const QUALIFICATIONS_HIERARCHY = [
     'PhD',
     'PG'
 ];
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 function UserDashboard({ user, onLogout }) {
     _s();
     const [jobs, setJobs] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -2086,7 +2086,7 @@ function UserDashboard({ user, onLogout }) {
                         setError(null);
                     } catch (err) {
                         console.error('Error fetching data:', err);
-                        setError('Failed to load data. Make sure Flask server is running on http://localhost:5000');
+                        setError('Failed to load data. Make sure Flask server is running on ${API_BASE}');
                     } finally{
                         setLoading(false);
                     }
@@ -3744,7 +3744,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 function AdminDashboard({ user, onLogout }) {
     _s();
     const [jobs, setJobs] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -3775,7 +3775,7 @@ function AdminDashboard({ user, onLogout }) {
                         setError(null);
                     } catch (err) {
                         console.error("[v0] Error fetching admin data:", err);
-                        setError('Failed to load data. Make sure Flask server is running on http://localhost:5000');
+                        setError('Failed to load data. Make sure Flask server is running on ${API_BASE}');
                     } finally{
                         setLoading(false);
                     }

@@ -11,7 +11,7 @@ import JobListingCard from './JobListingCard';
 import ApplicationForm from './ApplicationForm';
 
 const QUALIFICATIONS_HIERARCHY = ['KG', 'Pre-Primary', 'Primary', 'Secondary', 'Higher Secondary', 'Diploma', 'B.Tech', 'B.Sc', 'B.A', 'M.Tech', 'M.Sc', 'M.A', 'MBA', 'PhD', 'PG'];
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '${API_BASE}/api';
 
 export default function UserDashboard({ user, onLogout }: { user: any; onLogout: () => void }) {
   const [jobs, setJobs] = useState<any[]>([]);
@@ -42,7 +42,7 @@ export default function UserDashboard({ user, onLogout }: { user: any; onLogout:
         setError(null);
       } catch (err) {
         console.error('Error fetching data:', err);
-        setError('Failed to load data. Make sure Flask server is running on http://localhost:5000');
+        setError('Failed to load data. Make sure Flask server is running on ${API_BASE}');
       } finally {
         setLoading(false);
       }
